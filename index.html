@@ -608,6 +608,7 @@ header.scrolled .menu-mobile{
     position:relative;
 
     min-height:100vh;
+    min-height:100svh;
 
     display:flex;
     align-items:center;
@@ -617,7 +618,6 @@ header.scrolled .menu-mobile{
 
     overflow:hidden;
 }
-
 /*==============================
     Background
 ==============================*/
@@ -628,7 +628,7 @@ header.scrolled .menu-mobile{
     position:absolute;
     inset:0;
 
-    background:
+    background-image:
         linear-gradient(
             rgba(0,0,0,.45),
             rgba(0,0,0,.45)
@@ -636,8 +636,13 @@ header.scrolled .menu-mobile{
         url("vh2 (1).jpg");
 
     background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
+    background-position:center center;
+    background-repeat:no-repeat;
+
+    /* NÃO usar no iPhone */
+    background-attachment:scroll;
+
+    z-index:0;
 }
 
 .hero-content{
@@ -1985,6 +1990,11 @@ header.scrolled .menu-mobile{
         height:50px;
 
         font-size:1.3rem;
+    }
+
+     .hero::before{
+        background-attachment:scroll;
+        background-position:center center;
     }
 
 }
