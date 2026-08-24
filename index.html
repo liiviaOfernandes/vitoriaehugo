@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirmar Presença</title>
+  <title>Vitória & Hugo | Casamento</title>
+  <meta name="description" content="Site oficial do casamento de Vitória e Hugo. Confira os detalhes da cerimônia, confirme sua presença e conheça nossa lista de presentes.">
+  <meta name="theme-color" content="#B08D57">
 
 <style>
 /*==================================================
@@ -1499,6 +1501,14 @@ header.scrolled .menu-mobile{
     animation:toastEntrada .35s ease;
 }
 
+.presente-visual img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+}
+
 .toast i{
     font-size:26px;
 }
@@ -2230,9 +2240,363 @@ footer h2{
 
 }
 
+/*==================================================
+  REFINAMENTO — LISTA DE PRESENTES + PIX
+==================================================*/
+#presentes{
+    position:relative;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(176,141,87,.10), transparent 28%),
+        linear-gradient(180deg,#fffdf9 0%,#f8f3ec 100%);
+}
+
+#presentes .section-title{
+    max-width:760px;
+    margin-inline:auto;
+}
+
+.presentes-toolbar{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:-30px auto 42px;
+}
+
+.filtro-presente{
+    border:1px solid rgba(176,141,87,.28);
+    background:rgba(255,255,255,.8);
+    color:var(--secondary);
+    padding:11px 18px;
+    border-radius:999px;
+    font-size:.88rem;
+    font-weight:500;
+    transition:var(--transition-fast);
+}
+
+.filtro-presente:hover,
+.filtro-presente.active{
+    background:var(--primary);
+    color:#fff;
+    border-color:var(--primary);
+    box-shadow:0 8px 24px rgba(176,141,87,.22);
+}
+
+.presentes-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:22px;
+}
+
+.presente{
+    display:flex;
+    flex-direction:column;
+    min-height:100%;
+    overflow:hidden;
+    background:rgba(255,255,255,.92);
+    border:1px solid rgba(176,141,87,.16);
+    border-radius:24px;
+    box-shadow:0 12px 35px rgba(57,43,29,.07);
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.presente:hover{
+    transform:translateY(-6px);
+    border-color:rgba(176,141,87,.38);
+    box-shadow:0 20px 45px rgba(57,43,29,.12);
+}
+
+.presente.hidden{display:none;}
+
+.presente-visual{
+    position:relative;
+    display:grid;
+    place-items:center;
+    min-height:170px;
+    background:
+        linear-gradient(135deg,rgba(176,141,87,.16),rgba(255,255,255,.72)),
+        #f7f0e6;
+    overflow:hidden;
+}
+
+.presente-visual::before,
+.presente-visual::after{
+    content:"";
+    position:absolute;
+    border:1px solid rgba(176,141,87,.18);
+    border-radius:50%;
+}
+
+.presente-visual::before{width:130px;height:130px;right:-42px;top:-50px;}
+.presente-visual::after{width:90px;height:90px;left:-34px;bottom:-38px;}
+
+.presente-visual i{
+    position:relative;
+    z-index:1;
+    font-size:3rem;
+    color:var(--primary-dark);
+    filter:drop-shadow(0 8px 14px rgba(89,65,34,.12));
+}
+
+.presente-badge{
+    position:absolute;
+    top:14px;
+    left:14px;
+    z-index:2;
+    padding:7px 11px;
+    border-radius:999px;
+    background:rgba(255,255,255,.88);
+    border:1px solid rgba(176,141,87,.18);
+    color:var(--secondary);
+    font-size:.70rem;
+    font-weight:600;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+}
+
+.presente.destaque .presente-visual{
+    background:linear-gradient(135deg,#2f2922,#7c6546);
+}
+
+.presente.destaque .presente-visual i{color:#f3dcae;}
+.presente.destaque .presente-badge{background:#f1d49a;color:#4d3c25;border-color:transparent;}
+
+.presente-content{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    padding:22px;
+}
+
+.presente-content h3{
+    min-height:52px;
+    margin-bottom:8px;
+    font-size:1.55rem;
+}
+
+.presente-content .gift-desc{
+    min-height:48px;
+    margin-bottom:16px;
+    font-size:.88rem;
+    line-height:1.7;
+}
+
+.presente-content .valor{
+    margin-top:auto;
+    margin-bottom:18px;
+    font-family:var(--font-title);
+    font-size:1.55rem;
+    font-weight:600;
+    color:var(--primary-dark);
+}
+
+.presente-content .btn{
+    width:100%;
+    padding:14px 18px;
+    font-size:.9rem;
+    box-shadow:none;
+}
+
+.presente-content .btn i{font-size:.88rem;}
+
+.presentes-nota{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    max-width:760px;
+    margin:38px auto 0;
+    padding:18px 20px;
+    border:1px solid rgba(176,141,87,.18);
+    border-radius:18px;
+    background:rgba(255,255,255,.72);
+}
+
+.presentes-nota i{color:var(--primary);margin-top:4px;}
+.presentes-nota p{font-size:.9rem;line-height:1.7;}
+
+#pix{
+    padding:110px 20px;
+    background:linear-gradient(180deg,#f8f3ec 0%,#fff 100%);
+}
+
+.pix-card{
+    max-width:980px;
+    padding:48px;
+    border:1px solid rgba(176,141,87,.22);
+    box-shadow:0 24px 70px rgba(57,43,29,.10);
+}
+
+.pix-card h2{color:var(--secondary);}
+.pix-card > p{margin-bottom:32px;}
+
+.pix-selecao{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    align-items:center;
+    margin:0 0 30px;
+    padding:18px 20px;
+    border-radius:18px;
+    background:#faf7f2;
+    border:1px solid rgba(176,141,87,.18);
+}
+
+.pix-selecao small{display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.12em;}
+.pix-selecao strong{display:block;color:var(--secondary);font-family:var(--font-title);font-size:1.35rem;}
+.pix-selecao .pix-valor-atual{color:var(--primary-dark);white-space:nowrap;}
+
+.pix-grid{
+    grid-template-columns:280px 1fr;
+    gap:44px;
+}
+
+.qr-wrap{
+    display:grid;
+    place-items:center;
+    min-height:280px;
+    padding:16px;
+    border:1px solid #eee6dc;
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+#pixQr canvas,
+#pixQr img{
+    width:245px !important;
+    height:245px !important;
+    max-width:100%;
+}
+
+.pix-form-row{
+    display:grid;
+    grid-template-columns:1fr 150px;
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.pix-field label{
+    display:block;
+    margin-bottom:8px;
+    color:#7c746d;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.pix-field input,
+.pix-field textarea{
+    width:100%;
+    border:1px solid #dfd7cd;
+    border-radius:13px;
+    background:#fcfbf9;
+    color:#4f463e;
+}
+
+.pix-field input{padding:14px 16px;}
+.pix-field textarea{min-height:104px;padding:13px 15px;resize:none;font-size:.78rem;line-height:1.5;}
+
+.pix-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:14px;
+}
+
+.pix-actions .btn{padding:13px 18px;box-shadow:none;font-size:.88rem;}
+.pix-actions .btn-outline{background:#fff;}
+
+.pix-security{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:14px;
+    color:#8c847b;
+    font-size:.78rem;
+}
+
+.card-payment-box{
+    margin-top:24px;
+    padding:20px;
+    border:1px solid rgba(176,141,87,.18);
+    border-radius:18px;
+    background:#fffaf4;
+}
+.card-payment-box h3{
+    margin:0 0 6px;
+    color:var(--secondary);
+    font-family:var(--font-title);
+    font-size:1.28rem;
+}
+.card-payment-box p{
+    margin:0 0 14px;
+    color:#7c746d;
+    font-size:.88rem;
+    line-height:1.6;
+}
+.card-payment-box .btn{box-shadow:none;}
+.card-payment-box.is-disabled{display:none;}
+
+@media (max-width:1050px){
+    .presentes-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+
+@media (max-width:780px){
+    .presentes-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+    .presente-visual{min-height:145px;}
+    .presente-content{padding:18px;}
+    .presente-content h3{font-size:1.35rem;min-height:auto;}
+    .presente-content .gift-desc{min-height:auto;}
+    .pix-card{padding:32px 22px;}
+    .pix-grid{grid-template-columns:1fr;gap:28px;}
+    .qr-wrap{max-width:300px;width:100%;margin:auto;}
+    .pix-selecao{align-items:flex-start;flex-direction:column;}
+}
+
+@media (max-width:520px){
+    .presentes-grid{grid-template-columns:1fr;}
+    .presentes-toolbar{justify-content:flex-start;overflow:auto;flex-wrap:nowrap;padding-bottom:4px;}
+    .filtro-presente{flex:0 0 auto;}
+    .pix-form-row{grid-template-columns:1fr;}
+    .pix-actions .btn{width:100%;}
+}
 
 </style>
 
+
+<style id="local-icons">
+/* Ícones locais: evita dependência do Font Awesome/CDN e avisos de Tracking Prevention. */
+i[class^="fa-"], i[class*=" fa-"]{
+  display:inline-flex; align-items:center; justify-content:center;
+  font-style:normal; line-height:1; min-width:1em;
+}
+.fa-whatsapp::before{content:"✆";}
+.fa-calendar::before{content:"▣";}
+.fa-clock::before{content:"◷";}
+.fa-location-dot::before{content:"⌖";}
+.fa-utensils::before{content:"♨";}
+.fa-music::before{content:"♫";}
+.fa-mug-hot::before,.fa-mug-saucer::before{content:"☕";}
+.fa-pix::before{content:"Pix"; font-size:.72em; font-weight:800; letter-spacing:-.02em;}
+.fa-box-open::before{content:"▱";}
+.fa-bath::before{content:"♨";}
+.fa-bed::before{content:"▰";}
+.fa-pizza-slice::before{content:"△";}
+.fa-blender::before{content:"◈";}
+.fa-wind::before{content:"≈";}
+.fa-kitchen-set::before{content:"◇";}
+.fa-plane-departure::before{content:"✈";}
+.fa-temperature-half::before{content:"◐";}
+.fa-broom::before{content:"⌁";}
+.fa-shirt::before{content:"♧";}
+.fa-snowflake::before{content:"❄";}
+.fa-heart::before{content:"♥";}
+.fa-copy::before{content:"▣";}
+.fa-key::before{content:"⌘";}
+.fa-lock::before{content:"▣";}
+.fa-credit-card::before{content:"▭";}
+</style>
 </head>
 <body>
 <!-- ==========================================
@@ -2262,7 +2626,7 @@ HEADER
             <p class="subtitle">Com a bênção de Deus</p>
 
         <h1>Hugo <span>&</span> Vitória</h1>
-        <p class="hero-date">08 de Maio de 2027</p>
+        <p class="hero-date">29 de Maio de 2027</p>
         <p class="hero-text">
             "O matrimônio é um caminho de santidade vivido a dois."<br>
             <strong>São João Paulo II</strong>
@@ -2473,294 +2837,6 @@ Ana Clara"></textarea>
 
 </div>
 
-<!--  ==========================================
-            NOSSA HISTÓRIA
-========================================== 
-<section id="historia">
-
-<div class="container">
-
-<div class="section-title fade">
-
-<span>
-
-Nossa História
-
-</span>
-
-<h2>
-
-Onde tudo começou
-
-</h2>
-
-</div>
-
-<div class="grid-2">
-
-<div class="historia-imagem fade">
-
-<img
-
-src="foto1 (1).jpg"
-
-alt="Mariana e Matheus"
-
->
-
-</div>
-
-<div class="card fade">
-
-<h2>
-
-Uma história escrita por Deus
-
-</h2>
-
-<br>
-
-<p>
-
-Nossa história começou da forma mais bonita possível:
-servindo ao Senhor.
-
-</p>
-
-<br>
-
-<p>
-
-Entre missas, encontros e momentos de dedicação
-à Igreja, nossos caminhos se cruzaram.
-
-</p>
-
-<br>
-
-<p>
-
-Como acólitos, aprendemos juntos que o amor verdadeiro
-nasce quando Cristo é o centro da caminhada.
-
-</p>
-
-<br>
-
-<p>
-
-A amizade cresceu.
-
-A admiração aumentou.
-
-O carinho floresceu.
-
-E Deus, com infinita delicadeza,
-transformou nossa amizade em amor.
-
-</p>
-
-<br>
-
-<p>
-
-Hoje damos mais um passo dessa missão,
-construindo uma família fundamentada na fé,
-na esperança e na caridade.
-
-</p>
-
-<br>
-
-<p>
-
-Queremos celebrar esse momento
-com pessoas especiais que fizeram
-parte da nossa caminhada.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section> -->
-
-<!-- ==========================================
-            TIMELINE
-========================================== -->
-<!-- <section class="timeline">
-
-<div class="container">
-
-<div class="section-title fade">
-
-<span>
-
-Nossa caminhada
-
-</span>
-
-<h2>
-
-Cada momento nos trouxe até aqui
-
-</h2>
-
-</div>
-
-<div class="timeline-container">
-
-<div class="timeline-item left fade">
-
-<div class="timeline-content">
-
-<h3>
-
-2021
-
-</h3>
-
-<p>
-
-Nos conhecemos servindo
-na comunidade.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item right fade">
-
-<div class="timeline-content">
-
-<h3>
-
-2022
-
-</h3>
-
-<p>
-
-Descobrimos que Deus
-tinha algo muito maior
-reservado para nós.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item left fade">
-
-<div class="timeline-content">
-
-<h3>
-
-2024
-
-</h3>
-
-<p>
-
-Vivemos momentos
-inesquecíveis juntos,
-fortalecendo nossa fé
-e nosso amor.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item right fade">
-
-<div class="timeline-content">
-
-<h3>
-
-2026
-
-</h3>
-
-<p>
-
-O tão esperado pedido
-de casamento.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item left fade">
-
-<div class="timeline-content">
-
-<h3>
-
-2027
-
-</h3>
-
-<p>
-
-O dia em que receberemos
-o Sacramento do Matrimônio.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section> -->
-
-<!--==================================================
-                    GALERIA
-===================================================-->
-<!-- <section id="galeria">
-    <div class="container">
-        <div class="section-title fade">
-            <span>Nossas Memórias</span>
-            <h2>Galeria</h2>
-        </div>
-    <div class="gallery">
-        <img src="foto1 (1).jpg" alt="Foto 1">
-        <img src="foto1 (2).jpg" alt="Foto 2">
-        <img src="foto1 (3).jpg" alt="Foto 3">
-        <img src="foto1 (4).jpg" alt="Foto 4">
-        <img src="foto1 (5).jpg" alt="Foto 5">
-        <img src="foto1 (6).jpg" alt="Foto 6">
-        <img src="foto1 (7).jpg" alt="Foto 7">
-        <img src="foto1 (8).jpg" alt="Foto 8">
-    </div>
-</div>
-</section>
- -->
-<!-- LIGHTBOX -->
-<!-- <div id="lightbox">
-    <div class="lightbox-overlay"></div>
-
-    <button id="fecharLightbox">✕</button>
-    <button id="anterior">❮</button>
-    <img id="lightboxImagem">
-    <button id="proximo">❯</button>
-    <div id="contadorFotos">1 / 8</div>
-
-</div> -->
-
 <!-- ==========================================
             FRASE
 ========================================== -->
@@ -2833,7 +2909,7 @@ tudo suporta."
                     <span>Igreja Matriz Nossa Senhora do Carmo<br>Monte Carmelo - MG</span>
                 </div>
 
-                <section id="mapa">
+                <section id="mapa-cerimonia">
 
     <div class="container">
 
@@ -2907,7 +2983,7 @@ tudo suporta."
                 </div>
                 
 
-                <section id="mapa">
+                <section id="mapa-recepcao">
 
     <div class="container">
 
@@ -2958,150 +3034,6 @@ tudo suporta."
 </section>
 
 <!--==================================================
-                    MAPA
-===================================================-->
-<!-- <section id="mapa">
-
-    <div class="container">
-
-        <div class="section-title fade">
-            <span>Como chegar</span>
-            <h2>Local da Cerimônia</h2>
-        </div>
-
-        <div class="card fade">
-
-            <iframe
-                src="https://www.google.com/maps?q=Igreja+Matriz+Nossa+Senhora+do+Carmo,+Monte+Carmelo,+MG&output=embed"
-                width="100%"
-                height="500"
-                style="border:0;border-radius:20px;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-
-            <br><br>
-
-            <div style="text-align:center;">
-
-                <a
-                    href="https://www.google.com/maps/search/?api=1&query=Igreja+Matriz+Nossa+Senhora+do+Carmo,+Monte+Carmelo,+MG"
-                    target="_blank"
-                    class="btn">
-
-                    <i class="fa-solid fa-location-dot"></i>
-                    Abrir no Google Maps
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section> -->
-
-<!--==================================================
-                DRESS CODE
-===================================================-->
-<!-- <section id="dresscode">
-
-<div class="container">
-
-<div class="section-title fade">
-
-<span>Traje</span>
-
-<h2>Dress Code</h2>
-
-</div>
-
-<div class="grid-3">
-
-<div class="card fade">
-
-<h2> Mulheres</h2>
-
-<br>
-
-<p>
-
-Vestido longo ou midi.
-
-Tecidos leves e elegantes.
-
-</p>
-
-<br>
-
-<p>
-
-Evite branco,
-off-white ou tons muito claros.
-
-</p>
-
-</div>
-
-<div class="card fade">
-
-<h2> Homens</h2>
-
-<br>
-
-<p>
-
-Terno completo ou esporte fino.
-
-</p>
-
-<br>
-
-<p>
-
-Gravata opcional.
-
-</p>
-
-</div>
-
-<div class="card fade">
-
-<h2>Paleta</h2>
-
-<br>
-
-<p>
-
-Sugerimos tons terrosos,
-verde oliva,
-azul,
-marsala,
-bege
-e nude.
-
-</p>
-
-<br>
-
-<p>
-
-Mas o mais importante
-é sua presença!
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section> -->
-
-<!--==================================================
             FRASE FINAL
 ===================================================-->
 <section class="quote">
@@ -3138,45 +3070,104 @@ o amor é bondoso."
             <span>Com carinho</span>
             <h2>Lista de Presentes</h2>
             <p>
-            Sua presença já é o nosso maior presente.
-            Mas, caso deseje nos presentear, preparamos algumas opções.
+                Sua presença já é o nosso maior presente. Para quem desejar nos presentear,
+                reunimos opções para todos os bolsos. Ao escolher um item, o Pix será preparado
+                automaticamente com o valor correspondente.
             </p>
         </div>
-        <!-- LOJAS -->
-            <div class="grid-4">
-                <div class="presente fade">
-                    <img src="AirFryer.jpg">
-                    <div class="presente-content">
-                        <h3>Air Fryer</h3>
-                        <p class="valor">R$ 399,90</p>
-                        <a href="#" class="btn">Comprar</a>
-                    </div>
-                </div>
-                <div class="presente fade">
-                    <img src="jogodepanela.jpg">
-                    <div class="presente-content">
-                        <h3>Jogo de Panelas</h3>
-                        <p class="valor">R$ 799,90</p>
-                        <a href="#" class="btn">Comprar</a>
-                    </div>
-                </div>
-                <div class="presente fade">
-                    <img src="luademel.jpg">
-                    <div class="presente-content">
-                        <h3>Lua de Mel</h3>
-                        <p class="valor">Valor Livre</p>
-                        <a href="#pix" class="btn">Presentear</a>
-                    </div>
-                </div>
-                <div class="presente fade">
-                    <img src="casa.jpg">
-                    <div class="presente-content">
-                        <h3>Ajude nossa casa</h3>
-                        <p class="valor">Valor Livre</p>
-                        <a href="#pix" class="btn">Contribuir</a>
-                    </div>
-                </div>
-            </div>
+
+        <div class="presentes-toolbar fade" aria-label="Filtrar presentes por faixa de valor">
+            <button class="filtro-presente active" data-filter="todos">Todos</button>
+            <button class="filtro-presente" data-filter="ate200">Até R$ 200</button>
+            <button class="filtro-presente" data-filter="200a900">R$ 200 a R$ 900</button>
+            <button class="filtro-presente" data-filter="especiais">Presentes especiais</button>
+        </div>
+
+        <div class="presentes-grid">
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Carinho</span> <img src="cafedamanha.jpg" alt="Café da manhã dos noivos">></div>
+                <div class="presente-content"><h3>Café da manhã dos noivos</h3><p class="gift-desc">Um começo de dia gostoso para a nova rotina a dois.</p><span class="valor">R$ 59,90</span><button class="btn gift-pix" data-name="Café da manhã dos noivos" data-value="59.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Casa nova</span><img src="jogodexicaras.jpg" alt="Jogo de xícaras"> </div>
+                <div class="presente-content"><h3>Jogo de xícaras</h3><p class="gift-desc">Para cafés, visitas e muitos momentos de conversa.</p><span class="valor">R$ 79,90</span><button class="btn gift-pix" data-name="Jogo de xícaras" data-value="79.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Cozinha</span><img src="kitpoteshermeticos.jpg" alt="Kit de potes herméticos"> </div>
+                <div class="presente-content"><h3>Kit de potes herméticos</h3><p class="gift-desc">Organização e praticidade para a cozinha do casal.</p><span class="valor">R$ 99,90</span><button class="btn gift-pix" data-name="Kit de potes herméticos" data-value="99.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Conforto</span><img src="toalhas.jpg" alt="Jogo de toalhas"> </div>
+                <div class="presente-content"><h3>Jogo de toalhas</h3><p class="gift-desc">Um toque de conforto para o novo lar.</p><span class="valor">R$ 129,90</span><button class="btn gift-pix" data-name="Jogo de toalhas" data-value="129.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Quarto</span><img src="JogoCamaPosta.jpg" alt="Jogo de cama"> </div>
+                <div class="presente-content"><h3>Jogo de cama</h3><p class="gift-desc">Para deixar o cantinho dos noivos ainda mais aconchegante.</p><span class="valor">R$ 159,90</span><button class="btn gift-pix" data-name="Jogo de cama" data-value="159.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Experiência</span><img src="pizza.jpg" alt="Noite da pizza"> </div>
+                <div class="presente-content"><h3>Noite da pizza</h3><p class="gift-desc">Uma noite descontraída para curtir a vida de casados.</p><span class="valor">R$ 179,90</span><button class="btn gift-pix" data-name="Noite da pizza" data-value="179.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="ate200">
+                <div class="presente-visual"><span class="presente-badge">Experiência</span><img src="jantarromantico.jpg" alt="Jantar romântico"> </div>
+                <div class="presente-content"><h3>Jantar romântico</h3><p class="gift-desc">Um jantar especial para celebrar essa nova fase.</p><span class="valor">R$ 199,90</span><button class="btn gift-pix" data-name="Jantar romântico" data-value="199.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Cozinha</span><img src="licuadora.jpg" alt="Liquidificador"> </div>
+                <div class="presente-content"><h3>Liquidificador</h3><p class="gift-desc">Praticidade para receitas do dia a dia.</p><span class="valor">R$ 249,90</span><button class="btn gift-pix" data-name="Liquidificador" data-value="249.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Café</span><img src="Cafeteira.jpg" alt="Cafeteira"> </div>
+                <div class="presente-content"><h3>Cafeteira</h3><p class="gift-desc">Para cafés quentinhos em manhãs corridas e domingos tranquilos.</p><span class="valor">R$ 299,90</span><button class="btn gift-pix" data-name="Cafeteira" data-value="299.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Queridinho</span><img src="AirFryer.jpg" alt="Air Fryer"> </div>
+                <div class="presente-content"><h3>Air Fryer</h3><p class="gift-desc">Mais praticidade para as refeições do novo lar.</p><span class="valor">R$ 399,90</span><button class="btn gift-pix" data-name="Air Fryer" data-value="399.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Casa nova</span><img src="jogodepanela.jpg" alt="Jogo de panelas"> </div>
+                <div class="presente-content"><h3>Jogo de panelas</h3><p class="gift-desc">Para as primeiras receitas e almoços em família.</p><span class="valor">R$ 549,90</span><button class="btn gift-pix" data-name="Jogo de panelas" data-value="549.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Lua de mel</span><img src="luademel.jpg" alt="Cota para a lua de mel"> </div>
+                <div class="presente-content"><h3>Cota para a lua de mel</h3><p class="gift-desc">Uma contribuição para criar memórias inesquecíveis a dois.</p><span class="valor">R$ 650,00</span><button class="btn gift-pix" data-name="Cota para a lua de mel" data-value="650.00"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Eletro</span><img src="MicroOndas.jpg" alt="Micro-ondas"> </div>
+                <div class="presente-content"><h3>Micro-ondas</h3><p class="gift-desc">Um aliado para deixar a rotina mais prática.</p><span class="valor">R$ 749,90</span><button class="btn gift-pix" data-name="Micro-ondas" data-value="749.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente fade" data-faixa="200a900">
+                <div class="presente-visual"><span class="presente-badge">Casa</span><img src="aspirador.jpg" alt="Aspirador vertical"> </div>
+                <div class="presente-content"><h3>Aspirador vertical</h3><p class="gift-desc">Mais facilidade para cuidar da casa no dia a dia.</p><span class="valor">R$ 899,90</span><button class="btn gift-pix" data-name="Aspirador vertical" data-value="899.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente destaque fade" data-faixa="especiais">
+                <div class="presente-visual"><span class="presente-badge">Presente especial</span><img src="lavaeseca.jpg" alt="Lava e seca"> </div>
+                <div class="presente-content"><h3>Lava e seca</h3><p class="gift-desc">Um presente especial para facilitar bastante a nova rotina.</p><span class="valor">R$ 2.499,90</span><button class="btn gift-pix" data-name="Lava e seca" data-value="2499.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+
+            <article class="presente destaque fade" data-faixa="especiais">
+                <div class="presente-visual"><span class="presente-badge">Presente especial</span><img src="Geladeira.jpg" alt="Geladeira"> </div>
+                <div class="presente-content"><h3>Geladeira</h3><p class="gift-desc">Um dos grandes itens para completar o novo lar.</p><span class="valor">R$ 3.799,90</span><button class="btn gift-pix" data-name="Geladeira" data-value="3799.90"><i class="fa-brands fa-pix"></i> Presentear via Pix</button></div>
+            </article>
+        </div>
+
+        <div class="presentes-nota fade">
+            <i class="fa-solid fa-heart"></i>
+            <p>Os itens representam cotas de presente. O valor é enviado diretamente aos noivos via Pix, sem taxa de plataforma. Se preferir, você também pode definir outro valor na seção abaixo.</p>
         </div>
     </div>
 </section>
@@ -3187,20 +3178,56 @@ o amor é bondoso."
 <section id="pix">
     <div class="container">
         <div class="pix-card fade">
-            <h2>Presenteie via PIX</h2>
-            <p>
-            Caso prefira, utilize nossa chave PIX
-            ou faça a leitura do QR Code.
-            </p>
-            <div class="pix-grid">
+            <h2>Presenteie via Pix</h2>
+            <p>Escolha um presente acima ou informe o valor que desejar. O QR Code e o código Pix Copia e Cola serão atualizados automaticamente.</p>
+
+            <div class="pix-selecao">
                 <div>
-                    <img src="qrcode.png" class="qr-code">
+                    <small>Presente selecionado</small>
+                    <strong id="pixGiftName">Presente de valor livre</strong>
                 </div>
+                <strong class="pix-valor-atual" id="pixGiftValue">Valor livre</strong>
+            </div>
+
+            <div class="pix-grid">
+                <div class="qr-wrap" aria-label="QR Code Pix">
+                    <div id="pixQr"></div>
+                </div>
+
                 <div>
-                    <label>Chave PIX</label>
-                    <input id="pixCode" readonly value="casamento@email.com">
-                    <br>
-                    <button id="copiarPix" class="btn"> Copiar Chave </button>
+                    <div class="pix-form-row">
+                        <div class="pix-field">
+                            <label for="pixCode">Chave Pix</label>
+                            <input id="pixCode" readonly value="+5534999848413">
+                        </div>
+                        <div class="pix-field">
+                            <label for="pixValue">Valor</label>
+                            <input id="pixValue" type="number" min="1" step="0.01" inputmode="decimal" placeholder="R$ 0,00">
+                        </div>
+                    </div>
+
+                    <div class="pix-field">
+                        <label for="pixPayload">Pix Copia e Cola</label>
+                        <textarea id="pixPayload" readonly></textarea>
+                    </div>
+
+                    <div class="pix-actions">
+                        <button id="copiarPayload" class="btn"><i class="fa-regular fa-copy"></i> Copiar Pix Copia e Cola</button>
+                        <button id="copiarPix" class="btn btn-outline"><i class="fa-solid fa-key"></i> Copiar chave</button>
+                    </div>
+
+                    <div class="pix-security">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Pagamento direto para a chave Pix dos noivos: +5534999848413.</span>
+                    </div>
+
+                    <div id="cardPaymentBox" class="card-payment-box is-disabled">
+                        <h3><i class="fa-regular fa-credit-card"></i> Pagamento com cartão</h3>
+                        <p>Prefere cartão de crédito? Use o link seguro de pagamento dos noivos. O processamento acontece diretamente na plataforma de pagamento.</p>
+                        <a id="cardPaymentLink" class="btn" href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-regular fa-credit-card"></i> Pagar com cartão
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3213,6 +3240,27 @@ o amor é bondoso."
 <button id="voltarTopo"></button>
 
 
+<script>
+function carregarBibliotecaQRCode(){
+    return new Promise((resolve,reject)=>{
+        if(typeof QRCode !== "undefined") return resolve();
+        const fontes = [
+            "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js",
+            "https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"
+        ];
+        let indice = 0;
+        const tentar = ()=>{
+            if(indice >= fontes.length) return reject(new Error("QRCode indisponível"));
+            const script = document.createElement("script");
+            script.src = fontes[indice++];
+            script.onload = ()=> typeof QRCode !== "undefined" ? resolve() : tentar();
+            script.onerror = tentar;
+            document.head.appendChild(script);
+        };
+        tentar();
+    });
+}
+</script>
 <script>
 /*==================================================
     CONFIGURAÇÕES
@@ -3435,100 +3483,65 @@ function normalizarTexto(texto){
 }
 
 /*==================================================
-ABRIR POPUP
+POPUP RSVP — referências explícitas e seguras
 ==================================================*/
-if(abrir){
-
-abrir.addEventListener("click",()=>{
-
-    popup.classList.add("show");
-
-    document.body.style.overflow="hidden";
-
-    setTimeout(()=>{
-
-        campoNome.focus();
-
-    },300);
-
-});
-
-}
-
-/*==================================================
-FECHAR POPUP
-==================================================*/
-function fecharPopup(){
-
-    popup.classList.remove("show");
-
-    document.body.style.overflow="";
-
-    formulario.reset();
-
-    acompanhantesDiv.innerHTML="";
-
-}
-
-if(btnFecharRSVP){
-
-fechar.addEventListener("click",fecharPopup);
-
-}
-
-window.addEventListener("click",(e)=>{
-
-    if(e.target===popup){
-
-        fecharPopup();
-
-    }
-
-});
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Escape"){
-
-        fecharPopup();
-
-    }
-
-});
-
+const abrirRSVP = document.getElementById("abrirRSVP");
+const popupRSVP = document.getElementById("popupRSVP");
+const fecharRSVP = popupRSVP ? popupRSVP.querySelector(".fechar") : null;
+const rsvpForm = document.getElementById("rsvpForm");
+const campoNome = document.getElementById("nome");
 const presenca = document.getElementById("presenca");
 const acompanhantes = document.getElementById("acompanhantes");
-
 const areaAcompanhantes = document.getElementById("areaAcompanhantes");
 const nomesAcompanhantes = document.getElementById("nomesAcompanhantes");
 
-presenca.addEventListener("change", () => {
+function abrirPopupRSVP(){
+    if(!popupRSVP) return;
+    popupRSVP.classList.add("show");
+    document.body.style.overflow="hidden";
+    setTimeout(()=> campoNome?.focus(), 300);
+}
 
-    if (presenca.value === "Sim") {
+function fecharPopup(){
+    if(!popupRSVP) return;
+    popupRSVP.classList.remove("show");
+    document.body.style.overflow="";
+    if(rsvpForm) rsvpForm.reset();
+    if(areaAcompanhantes) areaAcompanhantes.style.display="none";
+    if(nomesAcompanhantes) nomesAcompanhantes.style.display="none";
+}
 
-        areaAcompanhantes.style.display = "block";
+abrirRSVP?.addEventListener("click", abrirPopupRSVP);
+fecharRSVP?.addEventListener("click", fecharPopup);
 
-    } else {
-
-        areaAcompanhantes.style.display = "none";
-        nomesAcompanhantes.style.display = "none";
-
-    }
-
+window.addEventListener("click",(e)=>{
+    if(e.target===popupRSVP) fecharPopup();
 });
 
-acompanhantes.addEventListener("change", () => {
+document.addEventListener("keydown",(e)=>{
+    if(e.key==="Escape" && popupRSVP?.classList.contains("show")) fecharPopup();
+});
 
-    if (acompanhantes.value === "Sim") {
-
-        nomesAcompanhantes.style.display = "block";
-
+presenca?.addEventListener("change", () => {
+    if(!areaAcompanhantes || !nomesAcompanhantes) return;
+    if (presenca.value === "Sim") {
+        areaAcompanhantes.style.display = "block";
     } else {
-
+        areaAcompanhantes.style.display = "none";
         nomesAcompanhantes.style.display = "none";
-
+        if(acompanhantes) acompanhantes.value="";
     }
+});
 
+acompanhantes?.addEventListener("change", () => {
+    if(!nomesAcompanhantes) return;
+    nomesAcompanhantes.style.display = acompanhantes.value === "Sim" ? "block" : "none";
+});
+
+/* Evita recarregar a página enquanto o envio definitivo do RSVP não estiver integrado. */
+rsvpForm?.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    mostrarToast("Confirmação preenchida","sucesso","Os dados foram preenchidos. Configure o canal de envio do RSVP para receber as confirmações.");
 });
 
 
@@ -3631,53 +3644,224 @@ toast.remove();
 }
 
 /*==================================================
-                PIX
+                PRESENTES + PIX COM VALOR
 ==================================================*/
 
-const botaoPix =
-document.getElementById("copiarPix");
+const PIX_CONFIG = {
+    chave: "+5534999848413",
+    recebedor: "VITORIA E HUGO",
+    cidade: "MONTE CARMELO"
+};
 
-if(botaoPix){
+// Cole aqui o link de pagamento (Mercado Pago, PagBank etc.) quando ele for criado.
+// Enquanto estiver vazio, a opção de cartão fica escondida automaticamente.
+const CARTAO_CONFIG = {
+    link: ""
+};
 
-botaoPix.addEventListener("click",copiarPix);
+const pixCode = document.getElementById("pixCode");
+const pixValue = document.getElementById("pixValue");
+const pixPayload = document.getElementById("pixPayload");
+const pixGiftName = document.getElementById("pixGiftName");
+const pixGiftValue = document.getElementById("pixGiftValue");
+const pixQr = document.getElementById("pixQr");
 
+function emv(id, valor){
+    const texto = String(valor);
+    return id + String(texto.length).padStart(2,"0") + texto;
 }
 
-async function copiarPix(){
-
-const chave =
-
-document.getElementById("pixCode").value;
-
-try{
-
-await navigator.clipboard.writeText(chave);
-
-mostrarToast(
-
-"PIX copiado!",
-
-"sucesso",
-
-"A chave foi copiada para sua área de transferência."
-
-);
-
-}catch{
-
-mostrarToast(
-
-"Erro ao copiar",
-
-"erro",
-
-"Copie a chave manualmente."
-
-);
-
+function limparTextoPix(texto, limite){
+    return texto
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^A-Za-z0-9 ]/g, "")
+        .toUpperCase()
+        .trim()
+        .slice(0, limite);
 }
 
+function crc16(payload){
+    let resultado = 0xFFFF;
+    for(let i=0;i<payload.length;i++){
+        resultado ^= payload.charCodeAt(i) << 8;
+        for(let bit=0;bit<8;bit++){
+            resultado = (resultado & 0x8000)
+                ? ((resultado << 1) ^ 0x1021) & 0xFFFF
+                : (resultado << 1) & 0xFFFF;
+        }
+    }
+    return resultado.toString(16).toUpperCase().padStart(4,"0");
 }
+
+function gerarPayloadPix(valor){
+    const nome = limparTextoPix(PIX_CONFIG.recebedor,25);
+    const cidade = limparTextoPix(PIX_CONFIG.cidade,15);
+    const contaPix = emv("00","BR.GOV.BCB.PIX") + emv("01",PIX_CONFIG.chave);
+
+    let payload =
+        emv("00","01") +
+        emv("01","11") +
+        emv("26",contaPix) +
+        emv("52","0000") +
+        emv("53","986");
+
+    if(Number(valor) > 0){
+        payload += emv("54",Number(valor).toFixed(2));
+    }
+
+    payload +=
+        emv("58","BR") +
+        emv("59",nome) +
+        emv("60",cidade) +
+        emv("62",emv("05","***")) +
+        "6304";
+
+    return payload + crc16(payload);
+}
+
+function formatarMoeda(valor){
+    return Number(valor).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+}
+
+function atualizarPix(){
+    if(!pixPayload) return;
+
+    const valor = Number(pixValue?.value || 0);
+    const payload = gerarPayloadPix(valor);
+    pixPayload.value = payload;
+
+    if(pixGiftValue){
+        pixGiftValue.textContent = valor > 0 ? formatarMoeda(valor) : "Valor livre";
+    }
+
+    if(!pixQr) return;
+    pixQr.innerHTML = '<p style="text-align:center;font-size:.85rem;color:#8c847b;">Gerando QR Code...</p>';
+
+    const desenhar = ()=>{
+        pixQr.innerHTML = "";
+        new QRCode(pixQr,{
+            text: payload,
+            width:245,
+            height:245,
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    };
+
+    if(typeof QRCode !== "undefined"){
+        desenhar();
+    }else{
+        carregarBibliotecaQRCode()
+            .then(desenhar)
+            .catch(()=>{
+                pixQr.innerHTML = '<p style="text-align:center;font-size:.85rem;line-height:1.6;color:#7c746d;">Não foi possível carregar o gerador do QR Code.<br><strong>O Pix Copia e Cola abaixo continua funcionando.</strong></p>';
+            });
+    }
+}
+
+function selecionarPresente(nome,valor){
+    if(pixGiftName) pixGiftName.textContent = nome;
+    if(pixValue) pixValue.value = Number(valor).toFixed(2);
+    atualizarPix();
+
+    document.getElementById("pix")?.scrollIntoView({behavior:"smooth",block:"start"});
+
+    mostrarToast(
+        "Presente selecionado",
+        "sucesso",
+        `${nome} — ${formatarMoeda(valor)}. O Pix já foi preparado com esse valor.`
+    );
+}
+
+document.querySelectorAll(".gift-pix").forEach(botao=>{
+    botao.addEventListener("click",()=>{
+        selecionarPresente(botao.dataset.name, botao.dataset.value);
+    });
+});
+
+document.querySelectorAll(".filtro-presente").forEach(botao=>{
+    botao.addEventListener("click",()=>{
+        document.querySelectorAll(".filtro-presente").forEach(item=>item.classList.remove("active"));
+        botao.classList.add("active");
+        const filtro = botao.dataset.filter;
+
+        document.querySelectorAll(".presente[data-faixa]").forEach(card=>{
+            card.classList.toggle("hidden", filtro !== "todos" && card.dataset.faixa !== filtro);
+        });
+    });
+});
+
+if(pixValue){
+    pixValue.addEventListener("input",()=>{
+        if(pixGiftName) pixGiftName.textContent = "Presente de valor livre";
+        atualizarPix();
+    });
+}
+
+function copiarComFallback(texto){
+    const area = document.createElement("textarea");
+    area.value = texto;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    area.style.pointerEvents = "none";
+    area.style.left = "-9999px";
+    document.body.appendChild(area);
+    area.focus();
+    area.select();
+    area.setSelectionRange(0, area.value.length);
+    let copiou = false;
+    try{
+        copiou = document.execCommand("copy");
+    }catch(e){
+        copiou = false;
+    }
+    area.remove();
+    return copiou;
+}
+
+async function copiarTexto(texto,titulo,mensagem,campo){
+    if(!texto) return;
+
+    try{
+        if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(texto);
+            mostrarToast(titulo,"sucesso",mensagem);
+            return;
+        }
+    }catch(e){}
+
+    if(copiarComFallback(texto)){
+        mostrarToast(titulo,"sucesso",mensagem);
+        return;
+    }
+
+    if(campo && typeof campo.select === "function"){
+        campo.focus();
+        campo.select();
+        if(campo.setSelectionRange) campo.setSelectionRange(0, campo.value.length);
+    }
+    mostrarToast("Copie manualmente","erro","O conteúdo foi selecionado. Use Ctrl+C (ou toque e segure no celular) para copiar.");
+}
+
+document.getElementById("copiarPix")?.addEventListener("click",()=>{
+    copiarTexto(pixCode.value,"Chave Pix copiada!","A chave +5534999848413 foi copiada.",pixCode);
+});
+
+document.getElementById("copiarPayload")?.addEventListener("click",()=>{
+    copiarTexto(pixPayload.value,"Pix Copia e Cola copiado!","Abra o app do seu banco e escolha a opção Pix Copia e Cola.",pixPayload);
+});
+
+if(pixCode) pixCode.value = PIX_CONFIG.chave;
+
+const cardPaymentBox = document.getElementById("cardPaymentBox");
+const cardPaymentLink = document.getElementById("cardPaymentLink");
+if(CARTAO_CONFIG.link && cardPaymentBox && cardPaymentLink){
+    cardPaymentLink.href = CARTAO_CONFIG.link;
+    cardPaymentBox.classList.remove("is-disabled");
+}
+
+atualizarPix();
 
 
 
