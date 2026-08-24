@@ -1292,169 +1292,464 @@ header.scrolled .menu-mobile{
     box-shadow:0 12px 35px rgba(0,0,0,.08);
 }
 
-/*==============================
-    Formulário
-==============================*/
+/*==================================================
+    POPUP + FORMULÁRIO RSVP
+==================================================*/
 
-.pix-grid label{
-    display:block;
-
-    margin-bottom:12px;
-
-    color:#888;
-
-    font-size:.85rem;
-    font-weight:600;
-
-    letter-spacing:3px;
-    text-transform:uppercase;
-}
-
-#pixCode{
-    width:100%;
-
-    padding:18px 22px;
-
-    border:1px solid #DDD;
-    border-radius:14px;
-
-    background:#FAFAFA;
-
-    color:#555;
-    font-size:1rem;
-
-    transition:var(--transition);
-}
-
-#pixCode:focus{
-    border-color:#171635;
-    background:#FFF;
-}
-
-#copiarPix{
-    margin-top:25px;
-}
-
-
-/****************************************
-12. POPUP
-****************************************/
-
-/*==============================
-    Overlay
-==============================*/
-
+/* Overlay do popup */
 .popup-overlay{
     position:fixed;
     inset:0;
+    z-index:10000;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    padding:20px;
+    padding:24px;
 
-    background:rgba(0,0,0,.55);
-
-    backdrop-filter:blur(6px);
+    background:rgba(31,25,20,.64);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
 
     opacity:0;
     visibility:hidden;
+    pointer-events:none;
 
-    transition:var(--transition);
-
-    z-index:9999;
+    transition:opacity .28s ease, visibility .28s ease;
 }
 
 .popup-overlay.show{
     opacity:1;
     visibility:visible;
+    pointer-events:auto;
 }
 
-/*==============================
-    Janela
-==============================*/
-
+/* Caixa principal */
 .popup{
     position:relative;
 
-    width:min(600px,95%);
-    max-height:90vh;
-
+    width:min(640px,100%);
+    max-height:calc(100vh - 48px);
     overflow-y:auto;
 
-    padding:40px;
+    padding:46px 46px 40px;
 
-    background:var(--white);
+    background:#fffdfb;
+    border:1px solid rgba(176,141,87,.22);
+    border-radius:28px;
 
-    border-radius:25px;
+    box-shadow:0 30px 90px rgba(34,25,17,.24);
 
-    animation:popup .35s ease;
+    transform:translateY(18px) scale(.985);
+    transition:transform .28s ease;
 }
 
-/*==============================
-    Fechar
-==============================*/
+.popup-overlay.show .popup{
+    transform:translateY(0) scale(1);
+}
 
-.fechar{
+.popup::-webkit-scrollbar{
+    width:7px;
+}
+
+.popup::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.popup::-webkit-scrollbar-thumb{
+    background:rgba(176,141,87,.55);
+    border-radius:999px;
+}
+
+/* Botão fechar */
+.popup .fechar{
     position:absolute;
-
     top:18px;
-    right:20px;
+    right:18px;
+    z-index:2;
 
-    font-size:30px;
+    width:42px;
+    height:42px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid rgba(176,141,87,.18);
+    border-radius:50%;
+
+    background:#fff;
+    color:#66574c;
+
+    font-size:28px;
+    font-weight:300;
+    line-height:1;
+
+    box-shadow:0 7px 20px rgba(66,49,34,.07);
+    transition:var(--transition-fast);
+}
+
+.popup .fechar:hover{
+    color:var(--primary-dark);
+    border-color:rgba(176,141,87,.45);
+    transform:rotate(4deg);
+}
+
+/* Cabeçalho */
+.rsvp-cabecalho{
+    padding-right:34px;
+    margin-bottom:28px;
+}
+
+.rsvp-mini-titulo{
+    display:inline-block;
+    margin-bottom:8px;
+
+    color:var(--primary);
+    font-size:.74rem;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.popup-rsvp h2{
+    margin:0 0 10px;
+
+    font-family:var(--font-title);
+    font-size:clamp(2.45rem,6vw,3.5rem);
+    font-weight:400;
+    line-height:.98;
+
+    color:#5b4b40;
+}
+
+.popup-rsvp .popup-subtitulo{
+    max-width:530px;
+    margin:0;
+
+    color:#8d837c;
+    font-size:.92rem;
+    line-height:1.75;
+}
+
+/* Formulário */
+.rsvp-form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:0;
+}
+
+.campo-rsvp{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.campo-rsvp label{
+    display:block;
+
+    color:#54483f;
+    font-size:.86rem;
+    font-weight:600;
+    letter-spacing:.01em;
+}
+
+.campo-rsvp label span{
+    color:#9c9189;
+    font-size:.74rem;
+    font-weight:400;
+}
+
+.campo-ajuda{
+    display:block;
+    margin-top:-3px;
+
+    color:#9b9189;
+    font-size:.74rem;
+}
+
+.campo-rsvp input,
+.campo-rsvp select,
+.campo-rsvp textarea{
+    width:100%;
+    box-sizing:border-box;
+
+    border:1px solid #e4ddd6;
+    border-radius:14px;
+
+    background:#faf8f6;
+    color:#51463e;
+
+    padding:14px 16px;
+
+    font-family:inherit;
+    font-size:.94rem;
+
+    outline:none;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.campo-rsvp input,
+.campo-rsvp select{
+    min-height:52px;
+}
+
+.campo-rsvp select{
+    cursor:pointer;
+    appearance:none;
+    -webkit-appearance:none;
+}
+
+.campo-rsvp textarea{
+    min-height:105px;
+    resize:vertical;
+    line-height:1.6;
+}
+
+.campo-rsvp input::placeholder,
+.campo-rsvp textarea::placeholder{
+    color:#aca39c;
+}
+
+.campo-rsvp input:focus,
+.campo-rsvp select:focus,
+.campo-rsvp textarea:focus{
+    background:#fff;
+    border-color:#bb9457;
+    box-shadow:0 0 0 4px rgba(187,148,87,.10);
+}
+
+/* Select personalizado */
+.select-rsvp{
+    position:relative;
+    width:100%;
+}
+
+.select-rsvp::after{
+    content:"⌄";
+
+    position:absolute;
+    right:17px;
+    top:50%;
+
+    transform:translateY(-58%);
+
+    color:#a48354;
+    font-size:18px;
+    pointer-events:none;
+}
+
+.select-rsvp select{
+    padding-right:45px;
+}
+
+/* Área de acompanhantes */
+.area-acompanhantes{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* Aviso antes do envio */
+.rsvp-aviso{
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    gap:8px;
+
+    padding:13px 15px;
+
+    border:1px solid #eee4d9;
+    border-radius:13px;
+
+    background:#f8f3ed;
+}
+
+.rsvp-aviso p{
+    margin:0;
+    color:#75665d;
+    font-size:.76rem;
+    line-height:1.55;
+    text-align:left;
+}
+
+/* Botão principal */
+.btn-confirmar-rsvp{
+    width:100%;
+    min-height:56px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+
+    padding:14px 22px;
+
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:#fff;
+
+    font-family:inherit;
+    font-size:.95rem;
+    font-weight:600;
 
     cursor:pointer;
 
-    transition:var(--transition);
+    box-shadow:0 10px 24px rgba(129,91,44,.18);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
 }
 
-.fechar:hover{
-    color:var(--primary);
+.btn-confirmar-rsvp:hover{
+    transform:translateY(-2px);
+    filter:brightness(.98);
+    box-shadow:0 14px 30px rgba(129,91,44,.24);
 }
 
-/*==============================
-    Blocos
-==============================*/
-
-.info-convidado{
-    margin-top:20px;
-    padding:15px;
-
-    background:#EEF6FF;
-
-    border-radius:12px;
+.btn-confirmar-rsvp:active{
+    transform:translateY(0);
 }
 
-.acompanhante{
-    margin-top:20px;
+.btn-confirmar-rsvp .rsvp-btn-icon{
+    width:23px;
+    height:23px;
 
-    padding:18px;
+    display:grid;
+    place-items:center;
 
-    background:#FAFAFA;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:50%;
 
-    border:1px solid #ECECEC;
-    border-radius:15px;
+    font-size:.78rem;
 }
 
-/*==============================
-    Animação
-==============================*/
+/* Contato separado do cerimonial */
+.contato-rsvp{
+    margin:2px 0 0;
+    padding-top:16px;
 
-@keyframes popup{
+    border-top:1px solid #eee6df;
 
-    from{
-        opacity:0;
-        transform:translateY(40px) scale(.95);
+    color:#887c73;
+    font-size:.78rem;
+    line-height:1.65;
+    text-align:center;
+}
+
+.contato-rsvp a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    margin-top:7px;
+    padding:9px 15px;
+
+    border:1px solid rgba(176,141,87,.26);
+    border-radius:999px;
+
+    background:#fbf7f2;
+    color:#765b49;
+
+    font-weight:600;
+
+    transition:var(--transition-fast);
+}
+
+.contato-rsvp a:hover{
+    background:#f4ece3;
+    border-color:rgba(176,141,87,.5);
+    transform:translateY(-1px);
+}
+
+.rsvp-privacidade{
+    margin:-6px 0 0;
+
+    color:#aaa098;
+    font-size:.67rem;
+    line-height:1.5;
+    text-align:center;
+}
+
+/* Mobile */
+@media (max-width:600px){
+
+    .popup-overlay{
+        align-items:flex-end;
+        padding:10px;
     }
 
-    to{
-        opacity:1;
-        transform:none;
+    .popup{
+        width:100%;
+        max-height:94vh;
+
+        padding:38px 20px 26px;
+
+        border-radius:25px 25px 18px 18px;
     }
 
-}
+    .popup .fechar{
+        top:12px;
+        right:12px;
+        width:38px;
+        height:38px;
+        font-size:25px;
+    }
 
+    .rsvp-cabecalho{
+        padding-right:24px;
+        margin-bottom:24px;
+    }
+
+    .popup-rsvp h2{
+        font-size:2.35rem;
+    }
+
+    .popup-rsvp .popup-subtitulo{
+        font-size:.84rem;
+        line-height:1.65;
+    }
+
+    .rsvp-form{
+        gap:16px;
+    }
+
+    .campo-rsvp input,
+    .campo-rsvp select,
+    .campo-rsvp textarea{
+        font-size:16px;
+    }
+
+    .campo-rsvp input,
+    .campo-rsvp select{
+        min-height:50px;
+    }
+
+    .campo-rsvp textarea{
+        min-height:96px;
+    }
+
+    .btn-confirmar-rsvp{
+        min-height:54px;
+    }
+
+    .contato-rsvp a{
+        display:flex;
+        width:100%;
+    }
+}
 
 /****************************************
 13. TOAST
@@ -2721,115 +3016,127 @@ Confirmar Presença
 <!--==================================================
                 POPUP RSVP
 ===================================================-->
-<div class="popup-overlay" id="popupRSVP">
+<div class="popup-overlay" id="popupRSVP" aria-hidden="true">
 
-    <div class="popup">
+    <div class="popup popup-rsvp" role="dialog" aria-modal="true" aria-labelledby="tituloRSVP">
 
-        <button class="fechar" type="button">&times;</button>
+        <button class="fechar" type="button" aria-label="Fechar confirmação">&times;</button>
 
-        <h2>Confirmação de Presença</h2>
+        <div class="rsvp-cabecalho">
+            <span class="rsvp-mini-titulo">Vitória & Hugo</span>
 
-        <p class="popup-subtitulo">
-            Estamos muito felizes em compartilhar este momento com você.
-            Confirme sua presença preenchendo as informações abaixo.
-        </p>
+            <h2 id="tituloRSVP">Confirmação de Presença</h2>
 
-        <form id="rsvpForm">
+            <p class="popup-subtitulo">
+                Estamos muito felizes em compartilhar este momento com você.
+                Confirme sua presença preenchendo as informações abaixo.
+            </p>
+        </div>
 
-            <div class="form-group">
+        <form id="rsvpForm" class="rsvp-form">
 
-                <label>Nome Completo</label>
-
+            <div class="campo-rsvp">
+                <label for="nome">Nome completo</label>
                 <input
                     type="text"
                     id="nome"
+                    name="nome"
                     placeholder="Digite seu nome completo"
+                    autocomplete="name"
                     required>
-
             </div>
 
-            <div class="form-group">
-
-                <label>Telefone</label>
-
+            <div class="campo-rsvp">
+                <label for="telefone">Telefone</label>
                 <input
                     type="tel"
                     id="telefone"
-                    placeholder="(34) 99999-9999">
-
+                    name="telefone"
+                    placeholder="(34) 99999-9999"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="15">
             </div>
 
-            <div class="form-group">
+            <div class="campo-rsvp">
+                <label for="presenca">Você irá comparecer?</label>
 
-                <label>Você irá comparecer?</label>
-
-                <select id="presenca" required>
-
-                    <option value="">Selecione</option>
-                    <option value="Sim">Sim, estarei presente ❤️</option>
-                    <option value="Não">Infelizmente não poderei comparecer</option>
-
-                </select>
-
-            </div>
-
-            <div id="areaAcompanhantes" style="display:none;">
-
-                <div class="form-group">
-
-                    <label>Levará acompanhante(s)?</label>
-
-                    <select id="acompanhantes">
-
-                        <option value="">Selecione</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-
+                <div class="select-rsvp">
+                    <select id="presenca" name="presenca" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="Sim">Sim, estarei presente 💗</option>
+                        <option value="Não">Infelizmente não poderei comparecer</option>
                     </select>
+                </div>
+            </div>
 
+            <div id="areaAcompanhantes" class="area-acompanhantes" style="display:none;">
+
+                <div class="campo-rsvp">
+                    <label for="acompanhantes">Levará acompanhante(s)?</label>
+
+                    <div class="select-rsvp">
+                        <select id="acompanhantes" name="acompanhantes">
+                            <option value="">Selecione uma opção</option>
+                            <option value="Não">Não</option>
+                            <option value="Sim">Sim</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div
-                    id="nomesAcompanhantes"
-                    style="display:none;">
-
-                    <div class="form-group">
-
-                        <label>Nome(s) do(s) acompanhante(s)</label>
+                <div id="nomesAcompanhantes" style="display:none;">
+                    <div class="campo-rsvp">
+                        <label for="listaAcompanhantes">Nome(s) do(s) acompanhante(s)</label>
+                        <span class="campo-ajuda">Digite um nome por linha</span>
 
                         <textarea
                             id="listaAcompanhantes"
+                            name="listaAcompanhantes"
                             rows="4"
-                            placeholder="Exemplo:
-
-Maria Silva
-João Pedro
-Ana Clara"></textarea>
-
+                            placeholder="Exemplo:&#10;Maria Silva&#10;João Pedro&#10;Ana Clara"></textarea>
                     </div>
-
                 </div>
 
             </div>
 
-            <div class="form-group">
-
-                <label>Mensagem aos noivos (opcional)</label>
+            <div class="campo-rsvp">
+                <label for="mensagem">
+                    Mensagem aos noivos <span>(opcional)</span>
+                </label>
 
                 <textarea
                     id="mensagem"
+                    name="mensagem"
                     rows="4"
                     placeholder="Escreva uma mensagem especial..."></textarea>
-
             </div>
 
-            <button class="btn btn-full" type="submit">
+            <div class="rsvp-aviso">
+                <span aria-hidden="true">💌</span>
+                <p>
+                    Ao confirmar sua presença, você será direcionado para o WhatsApp do cerimonial
+                    com a mensagem pronta para enviar.
+                </p>
+            </div>
 
-                <i class="fa-brands fa-whatsapp"></i>
-
-                Enviar Confirmação
-
+            <button class="btn-confirmar-rsvp" type="submit">
+                <span class="rsvp-btn-icon" aria-hidden="true">✓</span>
+                <span>Enviar confirmação</span>
             </button>
+
+            <p class="contato-rsvp">
+                Dúvidas sobre a confirmação?<br>
+                <a
+                    href="https://wa.me/5534999877992"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Fale com o cerimonial · (34) 99987-7992
+                </a>
+            </p>
+
+            <p class="rsvp-privacidade">
+                Seus dados serão utilizados apenas para organização da lista de convidados.
+            </p>
 
         </form>
 
@@ -3260,8 +3567,6 @@ function carregarBibliotecaQRCode(){
         tentar();
     });
 }
-</script>
-<script>
 /*==================================================
     CONFIGURAÇÕES
 ==================================================*/
@@ -3483,165 +3788,178 @@ function normalizarTexto(texto){
 }
 
 /*==================================================
-POPUP RSVP — referências explícitas e seguras
+POPUP RSVP — confirmação pelo WhatsApp do cerimonial
 ==================================================*/
+const RSVP_CONFIG = {
+    whatsapp: "5534999877992",
+    nomeContato: "Cerimonial"
+};
+
 const abrirRSVP = document.getElementById("abrirRSVP");
 const popupRSVP = document.getElementById("popupRSVP");
-const fecharRSVP = popupRSVP ? popupRSVP.querySelector(".fechar") : null;
+const fecharRSVP = popupRSVP?.querySelector(".fechar");
 const rsvpForm = document.getElementById("rsvpForm");
+
 const campoNome = document.getElementById("nome");
-const presenca = document.getElementById("presenca");
-const acompanhantes = document.getElementById("acompanhantes");
+const campoTelefone = document.getElementById("telefone");
+const presencaRSVP = document.getElementById("presenca");
+const acompanhantesRSVP = document.getElementById("acompanhantes");
 const areaAcompanhantes = document.getElementById("areaAcompanhantes");
 const nomesAcompanhantes = document.getElementById("nomesAcompanhantes");
+const listaAcompanhantes = document.getElementById("listaAcompanhantes");
+const mensagemRSVP = document.getElementById("mensagem");
 
 function abrirPopupRSVP(){
     if(!popupRSVP) return;
+
     popupRSVP.classList.add("show");
-    document.body.style.overflow="hidden";
-    setTimeout(()=> campoNome?.focus(), 300);
+    popupRSVP.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+
+    setTimeout(() => campoNome?.focus(), 250);
 }
 
-function fecharPopup(){
+function atualizarCamposRSVP(){
+    if(!presencaRSVP || !areaAcompanhantes || !nomesAcompanhantes) return;
+
+    const vaiComparecer = presencaRSVP.value === "Sim";
+    const levaraAcompanhante = acompanhantesRSVP?.value === "Sim";
+
+    areaAcompanhantes.style.display = vaiComparecer ? "flex" : "none";
+    nomesAcompanhantes.style.display = vaiComparecer && levaraAcompanhante ? "block" : "none";
+
+    if(!vaiComparecer){
+        if(acompanhantesRSVP) acompanhantesRSVP.value = "";
+        if(listaAcompanhantes) listaAcompanhantes.value = "";
+    }
+
+    if(vaiComparecer && !levaraAcompanhante && listaAcompanhantes){
+        listaAcompanhantes.value = "";
+    }
+
+    if(listaAcompanhantes){
+        listaAcompanhantes.required = vaiComparecer && levaraAcompanhante;
+    }
+}
+
+function fecharPopupRSVP(){
     if(!popupRSVP) return;
+
     popupRSVP.classList.remove("show");
-    document.body.style.overflow="";
-    if(rsvpForm) rsvpForm.reset();
-    if(areaAcompanhantes) areaAcompanhantes.style.display="none";
-    if(nomesAcompanhantes) nomesAcompanhantes.style.display="none";
+    popupRSVP.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+
+    rsvpForm?.reset();
+    atualizarCamposRSVP();
 }
 
 abrirRSVP?.addEventListener("click", abrirPopupRSVP);
-fecharRSVP?.addEventListener("click", fecharPopup);
+fecharRSVP?.addEventListener("click", fecharPopupRSVP);
 
-window.addEventListener("click",(e)=>{
-    if(e.target===popupRSVP) fecharPopup();
+popupRSVP?.addEventListener("click", (e) => {
+    if(e.target === popupRSVP) fecharPopupRSVP();
 });
 
-document.addEventListener("keydown",(e)=>{
-    if(e.key==="Escape" && popupRSVP?.classList.contains("show")) fecharPopup();
-});
-
-presenca?.addEventListener("change", () => {
-    if(!areaAcompanhantes || !nomesAcompanhantes) return;
-    if (presenca.value === "Sim") {
-        areaAcompanhantes.style.display = "block";
-    } else {
-        areaAcompanhantes.style.display = "none";
-        nomesAcompanhantes.style.display = "none";
-        if(acompanhantes) acompanhantes.value="";
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && popupRSVP?.classList.contains("show")){
+        fecharPopupRSVP();
     }
 });
 
-acompanhantes?.addEventListener("change", () => {
-    if(!nomesAcompanhantes) return;
-    nomesAcompanhantes.style.display = acompanhantes.value === "Sim" ? "block" : "none";
+presencaRSVP?.addEventListener("change", atualizarCamposRSVP);
+acompanhantesRSVP?.addEventListener("change", atualizarCamposRSVP);
+
+/* Máscara simples para telefone */
+campoTelefone?.addEventListener("input", () => {
+    let numeros = campoTelefone.value.replace(/\D/g, "").slice(0, 11);
+
+    if(numeros.length > 10){
+        campoTelefone.value = numeros.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+    }else if(numeros.length > 6){
+        campoTelefone.value = numeros.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+    }else if(numeros.length > 2){
+        campoTelefone.value = numeros.replace(/(\d{2})(\d+)/, "($1) $2");
+    }else if(numeros.length){
+        campoTelefone.value = numeros.replace(/(\d{0,2})/, "($1");
+    }
 });
 
-/* Evita recarregar a página enquanto o envio definitivo do RSVP não estiver integrado. */
-rsvpForm?.addEventListener("submit", (e)=>{
+rsvpForm?.addEventListener("submit", (e) => {
     e.preventDefault();
-    mostrarToast("Confirmação preenchida","sucesso","Os dados foram preenchidos. Configure o canal de envio do RSVP para receber as confirmações.");
+
+    const nome = campoNome?.value.trim() || "";
+    const telefone = campoTelefone?.value.trim() || "";
+    const presenca = presencaRSVP?.value || "";
+    const acompanhante = acompanhantesRSVP?.value || "";
+    const nomes = listaAcompanhantes?.value.trim() || "";
+    const mensagem = mensagemRSVP?.value.trim() || "";
+
+    if(!nome || !presenca){
+        mostrarToast(
+            "Preencha os campos",
+            "erro",
+            "Informe seu nome e confirme se estará presente."
+        );
+        return;
+    }
+
+    if(presenca === "Sim" && !acompanhante){
+        mostrarToast(
+            "Informe os acompanhantes",
+            "erro",
+            "Selecione se você levará acompanhante(s)."
+        );
+        acompanhantesRSVP?.focus();
+        return;
+    }
+
+    if(presenca === "Sim" && acompanhante === "Sim" && !nomes){
+        mostrarToast(
+            "Informe os nomes",
+            "erro",
+            "Digite o nome do(s) acompanhante(s)."
+        );
+        listaAcompanhantes?.focus();
+        return;
+    }
+
+    let texto = `💍 *CONFIRMAÇÃO DE PRESENÇA — VITÓRIA & HUGO*\n\n`;
+    texto += `👤 *Nome:* ${nome}\n`;
+
+    if(telefone){
+        texto += `📱 *Telefone:* ${telefone}\n`;
+    }
+
+    texto += `\n`;
+
+    if(presenca === "Sim"){
+        texto += `✅ *Presença:* Sim, estarei presente!\n`;
+        texto += `👥 *Acompanhantes:* ${acompanhante}\n`;
+
+        if(acompanhante === "Sim" && nomes){
+            texto += `📝 *Nome(s):* ${nomes}\n`;
+        }
+    }else{
+        texto += `❌ *Presença:* Infelizmente não poderei comparecer.\n`;
+    }
+
+    if(mensagem){
+        texto += `\n💌 *Mensagem aos noivos:*\n${mensagem}\n`;
+    }
+
+    texto += `\n✨ Confirmação enviada pelo site do casamento.`;
+
+    const urlWhatsApp = `https://wa.me/${RSVP_CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+
+    const novaJanela = window.open(urlWhatsApp, "_blank", "noopener,noreferrer");
+
+    /* Fallback para navegadores que bloqueiam nova aba */
+    if(!novaJanela){
+        window.location.href = urlWhatsApp;
+    }
 });
 
-
-
-
-
-
-
-
-
-/*==================================================
-                SISTEMA DE TOAST
-==================================================*/
-function mostrarToast(
-
-titulo,
-
-tipo="info",
-
-mensagem=""
-
-){
-
-const container =
-document.getElementById("toastContainer");
-
-const toast =
-document.createElement("div");
-
-toast.className =
-`toast ${tipo}`;
-
-let icone="💙";
-
-switch(tipo){
-
-case "sucesso":
-
-icone="✅";
-
-break;
-
-case "erro":
-
-icone="❌";
-break;
-case "alerta":
-icone="⚠️";
-break;
-case "info":
-icone="ℹ️";
-break;
-
-}
-
-toast.innerHTML=`
-
-<div>
-
-<span style="font-size:28px">
-
-${icone}
-
-</span>
-
-</div>
-
-<div>
-
-<h4>
-
-${titulo}
-
-</h4>
-
-<p>
-
-${mensagem}
-
-</p>
-
-</div>
-
-`;
-
-container.appendChild(toast);
-
-setTimeout(()=>{
-
-toast.classList.add("remover");
-
-setTimeout(()=>{
-
-toast.remove();
-
-},300);
-
-},4000);
-
-}
+atualizarCamposRSVP();
 
 /*==================================================
                 PRESENTES + PIX COM VALOR
@@ -3866,8 +4184,8 @@ atualizarPix();
 
 
 
-
 </script>
+
 
 <!-- ==========================================
     TOAST
