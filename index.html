@@ -2907,6 +2907,92 @@ i[class^="fa-"], i[class*=" fa-"]{
 .fa-lock::before{content:"▣";}
 .fa-credit-card::before{content:"▭";}
 </style>
+
+
+<style id="fotos-casal-style">
+/*==================================================
+    FOTOS DO CASAL — SEPARADAS AO LONGO DA PÁGINA
+==================================================*/
+.foto-casal-section{
+    position:relative;
+    padding:110px 0;
+    overflow:hidden;
+    background:linear-gradient(180deg,#FAF8F4 0%,#FFFDFB 100%);
+}
+
+.foto-casal-section.foto-casal-segunda{
+    background:linear-gradient(180deg,#FFFDFB 0%,#F6F1EA 100%);
+}
+
+.foto-casal-section .section-title{
+    max-width:760px;
+    margin:0 auto 48px;
+}
+
+.foto-casal-unica{
+    position:relative;
+    width:min(820px,92%);
+    margin:0 auto;
+    overflow:hidden;
+    border-radius:32px;
+    border:1px solid rgba(176,141,87,.18);
+    box-shadow:0 22px 55px rgba(57,43,29,.11);
+    background:#fff;
+}
+
+.foto-casal-unica img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    transition:transform .7s ease;
+}
+
+.foto-casal-unica:hover img{
+    transform:scale(1.018);
+}
+
+.foto-casal-unica::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,transparent 72%,rgba(42,31,22,.10) 100%);
+    pointer-events:none;
+}
+
+.foto-casal-segunda .foto-casal-unica{
+    width:min(760px,88%);
+}
+
+@media (max-width:768px){
+    .foto-casal-section{
+        padding:80px 0;
+    }
+
+    .foto-casal-section .section-title{
+        margin-bottom:34px;
+    }
+
+    .foto-casal-unica,
+    .foto-casal-segunda .foto-casal-unica{
+        width:92%;
+        border-radius:24px;
+    }
+}
+
+@media (max-width:480px){
+    .foto-casal-section{
+        padding:65px 0;
+    }
+
+    .foto-casal-unica,
+    .foto-casal-segunda .foto-casal-unica{
+        width:94%;
+        border-radius:20px;
+    }
+}
+</style>
+
 </head>
 <body>
 <!-- ==========================================
@@ -2989,6 +3075,25 @@ HEADER
 </div>
 
 </section>
+
+
+
+<!-- ==========================================
+                FOTO DO CASAL 01
+========================================== -->
+<section class="foto-casal-section" id="foto-casal-01">
+    <div class="container">
+        <div class="section-title fade">
+            <span>Nossa história</span>
+            <h2>Dois corações, uma só caminhada</h2>
+        </div>
+
+        <figure class="foto-casal-unica fade">
+            <img src="vh1.jpg" alt="Vitória e Hugo juntos" loading="lazy">
+        </figure>
+    </div>
+</section>
+
 
 <!--==================================================
                 RSVP
@@ -3353,6 +3458,17 @@ tudo suporta."
 
     </div>
 
+</section>
+
+<!-- ==========================================
+                FOTO DO CASAL 02
+========================================== -->
+<section class="foto-casal-section foto-casal-segunda" id="foto-casal-02">
+    <div class="container">
+        <figure class="foto-casal-unica fade">
+            <img src="vh3.jpg" alt="Vitória e Hugo sorrindo juntos" loading="lazy">
+        </figure>
+    </div>
 </section>
 
 <!--==================================================
